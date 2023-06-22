@@ -38,18 +38,21 @@ class Item:
         self.price *= self.pay_rate
 
     @property
-    def name(self):
+    def name(self) -> str:
+        """геттер названия товара"""
         return self.__name
 
     @name.setter
-    def name(self, name):
+    def name(self, name) -> None:
+        """сеттер на название товара, в зависимости от длины"""
         if len(name) <= 10:
             self.__name = name
         else:
             self.__name = name[:10]
 
     @classmethod
-    def instantiate_from_csv(cls):
+    def instantiate_from_csv(cls) -> None:
+        """класс-метод, инициализирующий экземпляры класса Item данными из файла src/items.csv"""
         cls.all = []
         with open('../src/items.csv', encoding='windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
@@ -60,5 +63,6 @@ class Item:
                 cls(name, price, quantity)
 
     @staticmethod
-    def string_to_number(num: str):
+    def string_to_number(num: str) -> int:
+        """статический метод, возвращающий число из числа-строки"""
         return int(float(num))
