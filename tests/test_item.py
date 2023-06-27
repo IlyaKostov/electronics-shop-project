@@ -6,7 +6,7 @@ from src.item import Item
 
 @pytest.fixture
 def item():
-    item1 = Item("Мышь", 100, 20)
+    item1 = Item('Мышь', 100, 20)
     return item1
 
 
@@ -45,3 +45,11 @@ def test_name_setter(item):
     assert item.name == 'Мышка'
     item.name = 'Суперпупермышь'
     assert item.name == 'Суперпупер'
+
+
+def test_item_repr(item):
+    assert repr(item) == "Item('Мышь', 100, 20)"
+
+
+def test_item_str(item):
+    assert str(item) == 'Мышь'
