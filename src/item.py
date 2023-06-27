@@ -1,4 +1,5 @@
 import csv
+import os
 
 
 class Item:
@@ -21,6 +22,12 @@ class Item:
         self.quantity = quantity
 
         self.all.append(self)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return f'{self.__name}'
 
     def calculate_total_price(self) -> float:
         """
@@ -54,7 +61,8 @@ class Item:
     def instantiate_from_csv(cls) -> None:
         """класс-метод, инициализирующий экземпляры класса Item данными из файла src/items.csv"""
         cls.all = []
-        with open('../src/items.csv', encoding='windows-1251') as csvfile:
+        filepath = os.path.join(os.path.dirname(__file__), 'items.csv')
+        with open(filepath, encoding='windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 name = row['name']
