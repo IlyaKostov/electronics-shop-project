@@ -53,3 +53,8 @@ def test_item_repr(item):
 
 def test_item_str(item):
     assert str(item) == 'Мышь'
+
+
+def test_add(item):
+    item2 = Item("Смартфон", 10000, 20)
+    assert item + item2 == 40

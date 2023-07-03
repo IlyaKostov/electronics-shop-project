@@ -46,12 +46,12 @@ class Item:
 
     @property
     def name(self) -> str:
-        """геттер названия товара"""
+        """Геттер названия товара"""
         return self.__name
 
     @name.setter
     def name(self, name) -> None:
-        """сеттер на название товара, в зависимости от длины"""
+        """Сеттер на название товара, в зависимости от длины"""
         if len(name) <= 10:
             self.__name = name
         else:
@@ -72,5 +72,8 @@ class Item:
 
     @staticmethod
     def string_to_number(num: str) -> int:
-        """статический метод, возвращающий число из числа-строки"""
+        """Статический метод, возвращающий число из числа-строки"""
         return int(float(num))
+
+    def __add__(self, other):
+        return self.quantity + other.quantity
