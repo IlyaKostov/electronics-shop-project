@@ -76,4 +76,6 @@ class Item:
         return int(float(num))
 
     def __add__(self, other):
+        if not issubclass(other.__class__, self.__class__):
+            raise ValueError('Складывать можно только объекты Item и дочерние от них.')
         return self.quantity + other.quantity
