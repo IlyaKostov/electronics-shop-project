@@ -8,14 +8,19 @@ class LayoutMixin:
         """
         Инициализация атрибута LANGUAGE класса LayoutMixin
         """
-        self.language = self.LANGUAGE
+        self.__language = self.LANGUAGE
 
     def change_lang(self):
         """
         Смена языка раскладки клавиатуры
         """
-        self.LANGUAGE = 'RU' if self.language == 'EN' else 'EN'
+        self.__language = 'RU' if self.__language == 'EN' else 'EN'
         return self
+
+    @property
+    def language(self):
+        """Геттер языка раскладки клавиатуры"""
+        return self.__language
 
 
 class Keyboard(Item, LayoutMixin):
@@ -28,8 +33,3 @@ class Keyboard(Item, LayoutMixin):
         :param quantity: Количество товара
         """
         super().__init__(name, price, quantity)
-
-    @property
-    def language(self):
-        """Геттер языка раскладки клавиатуры"""
-        return self.LANGUAGE
